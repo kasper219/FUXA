@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy, ViewChild } from '@angular/core';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialogRef as MatDialogRef, MAT_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatDialog as MatDialog } from '@angular/material/dialog';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Subscription, delay } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -96,8 +97,8 @@ export class DevicePropertyComponent implements OnInit, OnDestroy {
     private projectService: ProjectService;
 
 	constructor(
-        private dialog: MatDialog,
-        private hmiService: HmiService,
+		private dialog: MatDialog,
+		private hmiService: HmiService,
         private translateService: TranslateService,
         private appService: AppService,
 		public dialogRef: MatDialogRef<DevicePropertyComponent>,
@@ -375,7 +376,35 @@ export class DevicePropertyComponent implements OnInit, OnDestroy {
         event.stopPropagation();
     }
 
-    onRemoveEpModule(toRemove) {
+	isWithPolling() {
+		if (this.data.device?.type === DeviceType.internal) {
+			return false;
+		}
+		if (this.appService.isClientApp || this.appService.isDemoApp) {
+			return false;
+		}
+		return true;
+	}
+
+	canEnable() {
+		if (this.isFuxaServer || this.data.device?.type === this.deviceType.internal) {
+			return false;
+		}
+		return true;
+	}
+
+	onAddWriteKey() {
+		this.redisOptions.customCommand.write.args.push({
+			name: '',
+			value: '',
+		});
+	}
+
+	onRemoveWriteKey(idx: number) {
+		this.redisOptions.customCommand.write.args.splice(idx, 1);
+	}
+
+	onRemoveEpModule(toRemove) {
 		this.editModule(toRemove, false, true);
 		//this.data?.device?.modules?.filter(module => module.id === toRemove.id);
 	}
@@ -464,34 +493,6 @@ export class DevicePropertyComponent implements OnInit, OnDestroy {
 				this.data.device.name = result.productName;
 			}
         });
-	}
-
-	isWithPolling() {
-		if (this.data.device?.type === DeviceType.internal) {
-			return false;
-		}
-		if (this.appService.isClientApp || this.appService.isDemoApp) {
-			return false;
-		}
-		return true;
-	}
-
-	canEnable() {
-		if (this.isFuxaServer || this.data.device?.type === this.deviceType.internal) {
-			return false;
-		}
-		return true;
-	}
-
-	onAddWriteKey() {
-		this.redisOptions.customCommand.write.args.push({
-			name: '',
-			value: '',
-		});
-	}
-
-	onRemoveWriteKey(idx: number) {
-		this.redisOptions.customCommand.write.args.splice(idx, 1);
 	}
 
 	private securityModeToString(mode): string {
