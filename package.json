@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "st-ethernet-ip": "github:kasper219/ST-node-ethernet-ip"
-  }
-}
