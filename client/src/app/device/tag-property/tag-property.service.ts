@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog as MatDialog } from '@angular/material/dialog';
-import { Device, TAG_PREFIX, Tag, ServerTagType } from '../../_models/device';
+import { Device, TAG_PREFIX, Tag, EnipTagOptions, ServerTagType } from '../../_models/device';
 import { Utils } from '../../_helpers/utils';
 import { TagPropertyEditS7Component } from './tag-property-edit-s7/tag-property-edit-s7.component';
 import { Observable, map } from 'rxjs';
@@ -22,6 +22,7 @@ import { TagPropertyEditWebcamComponent, TagPropertyWebcamData } from './tag-pro
 import { TagPropertyEditMelsecComponent } from './tag-property-edit-melsec/tag-property-edit-melsec.component';
 import { TagPropertyEditRedisComponent, TagPropertyRedisData } from './tag-property-edit-redis/tag-property-edit-redis.component';
 import { TagPropertyRedisScanComponent, TagPropertyRedisScanData } from './tag-property-edit-redis/tag-property-redis-scan/tag-property-redis-scan.component';
+import { TagPropertyEditEnipComponent } from './tag-property-edit-enip/tag-property-edit-enip.component';
 
 @Injectable({
     providedIn: 'root'
