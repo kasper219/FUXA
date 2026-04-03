@@ -313,6 +313,35 @@ export class DeviceSecurity {
     caCertificateFileName: string;
 }
 
+export class EthernetIPModule {
+    /** module id guid */
+    id: string;
+    /** module name */
+    name: string;
+    /** description */
+    description: string;
+    /** request packet interval */
+    rpi: number;
+    /** input instance number */
+    inputInstance: number;
+    /** input instance size in bytes */
+    inputSize: number;
+    /** output instance number */
+    outputInstance: number;
+    /** output instance size in bytes */
+    outputSize: number;
+    /** configuration instance number */
+    configurationInstance: number;
+    /** configuration instance size in bytes */
+    configurationSize: number;
+    /** configuration data, hex encoded bytes */
+    configurationData: string;
+
+    constructor(_id: string) {
+        this.id = _id;
+    }
+}
+
 export enum DeviceType {
     FuxaServer = 'FuxaServer',
     SiemensS7 = 'SiemensS7',
@@ -530,6 +559,7 @@ export enum BACnetObjectType {
 
 export const DEVICE_PREFIX = 'd_';
 export const TAG_PREFIX = 't_';
+export const ETHERNETIPMODULE_PREFIX = 'm_';
 
 export class DevicesUtils {
     static getDeviceTagText(devices: Device[], id: string): string {
