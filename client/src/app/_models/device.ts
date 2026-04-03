@@ -313,6 +313,7 @@ export class DeviceSecurity {
     caCertificateFileName: string;
 }
 
+/** Used to hold the configuration for EthernetIP IO Module */
 export class EthernetIPModule {
     /** module id guid */
     id: string;

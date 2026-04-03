@@ -14,15 +14,15 @@ export class DeviceEnipmoduleComponent implements OnInit {
   private module: EthernetIPModule;
   constructor(private translateService: TranslateService,
     public dialogRef: MatDialogRef<DeviceEnipmoduleComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: any) { }
+        @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.isToRemove = this.data.remove;
     this.module = this.data.module as EthernetIPModule;
   }
   onNoClick(): void {
-		this.dialogRef.close();
-	}
+        this.dialogRef.close();
+    }
   onOkClick(): void {
 
   }
