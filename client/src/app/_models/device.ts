@@ -251,7 +251,8 @@ export enum DeviceType {
     GPIO = 'GPIO',
     WebCam = 'WebCam',
     MELSEC = 'MELSEC',
-    REDIS = 'REDIS'
+    REDIS = 'REDIS',
+    GenericEthernetIP = 'GenericEthernetIP',
     // Template: 'template'
 }
 

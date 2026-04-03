@@ -19,6 +19,8 @@ var WebCamClient = require('./webcam');
 var MELSECclient = require('./melsec');
 var REDISclient = require('./redis');
 
+var GenericEthernetIPclient = require('./genericethernetip'); //greg9504
+
 const path = require('path');
 const utils = require('../utils');
 
@@ -120,6 +122,12 @@ function Device(data, runtime) {
         }
         comm = REDISclient.create(data, logger, events, manager, runtime);
     }
+    else if (data.type === DeviceEnum.GenericEthernetIP) { //greg9504
+        if (!GenericEthernetIPclient) {
+            return null;
+        }
+        comm = GenericEthernetIPclient.create(data, logger, events, manager, runtime); 
+    } 
     // else if (data.type === DeviceEnum.Template) {
     //     if (!TEMPLATEclient) {
     //         return null;
@@ -314,8 +322,29 @@ function Device(data, runtime) {
                 }).catch(function (err) {
                     reject(err);
                 });
+            } else if (data.type === DeviceEnum.GenericEthernetIP) { //greg9504
+                comm.browse(path, callback).then(function (result) {
+                    resolve(result);
+                }).catch(function (err) {
+                    reject(err);
+                });
             } else {
                 reject('Browse not supported!');
+            }
+        });
+    }
+
+    /** look for devices of the same type on the network GenericEthernetIP*/ //greg9504
+    this.browseForDevices = function (path, callback) {
+        return new Promise(function (resolve, reject) {
+            if (data.type === DeviceEnum.GenericEthernetIP) {
+                comm.browseForDevices(path, callback).then(function (result) {
+                    resolve(result);
+                }).catch(function (err) {
+                    reject(err);
+                });
+            }else {
+                reject('Browse for devices not supported!');
             }
         });
     }
@@ -544,6 +573,8 @@ function loadPlugin(type, module) {
         MELSECclient = require(module);
     } else if (type === DeviceEnum.REDIS) {
         REDISclient = require(module);
+    } else if (type === DeviceEnum.GenericEthernetIP) { //greg9504
+        GenericEthernetIPclient = require(module);
     }
 }
 
@@ -586,6 +617,7 @@ var DeviceEnum = {
     WebCam: 'WebCam',
     MELSEC: 'MELSEC',
     REDIS: 'REDIS',
+    GenericEthernetIP: 'GenericEthernetIP',
     // Template: 'template'
 }
 

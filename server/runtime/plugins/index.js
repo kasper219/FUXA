@@ -40,6 +40,7 @@ plugins['node-webcam'] = new Plugin('node-webcam', './node-webcam', 'WebCam', '0
 plugins['mcprotocol'] = new Plugin('mcprotocol', './mcprotocol', 'MELSEC', '0.1.2', PluginGroupType.connectionDevice, true);
 plugins['node-red'] = new Plugin('node-red', './node-red', 'node-red', '4.1.0', PluginGroupType.service);
 plugins['redis'] = new Plugin('redis', './redis', 'REDIS', '5.8.2', PluginGroupType.connectionDevice, true);
+plugins['st-ethernet-ip'] = new Plugin('st-ethernet-ip', './genericethernetip', 'GenericEthernetIP', '2.7.2', PluginGroupType.connectionDevice, true);
 
 
 /**
