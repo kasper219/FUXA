@@ -31,9 +31,12 @@ export class Device {
     polling: number;
     /** Tags list of Tag */
     tags: DictionaryTag;
+    /** Memory IO Modules for Ethernet/IP: list {} of type EthernetIPModule indexed by id */
+    modules: any;
 
     constructor(_id: string) {
         this.id = _id;
+        this.modules = {};
     }
 
     static descriptor = {
