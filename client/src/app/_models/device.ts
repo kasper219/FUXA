@@ -360,7 +360,7 @@ export enum DeviceType {
     WebCam = 'WebCam',
     MELSEC = 'MELSEC',
     REDIS = 'REDIS',
-    GenericEthernetIP = 'GenericEthernetIP',
+    GenericEthernetIP = 'GenericEthernetIP'
     // Template: 'template'
 }
 

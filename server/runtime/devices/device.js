@@ -617,7 +617,7 @@ var DeviceEnum = {
     WebCam: 'WebCam',
     MELSEC: 'MELSEC',
     REDIS: 'REDIS',
-    GenericEthernetIP: 'GenericEthernetIP',
+    GenericEthernetIP: 'GenericEthernetIP'
     // Template: 'template'
 }
 
