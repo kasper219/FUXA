@@ -581,5 +581,6 @@ var devices = module.exports = {
     setTagDaqSettings: setTagDaqSettings,
     getDeviceProperty: getDeviceProperty,
     setDeviceProperty: setDeviceProperty,
-    getHistoricalTags: getHistoricalTags
+    getHistoricalTags: getHistoricalTags,
+    browseForDevices: browseForDevices,
 }

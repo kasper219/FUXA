@@ -7,6 +7,7 @@ import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { MatTreeModule } from '@angular/material/tree';
 
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -49,6 +50,8 @@ import { DevicePropertyComponent } from './device/device-property/device-propert
 import { TagOptionsComponent } from './device/tag-options/tag-options.component';
 import { TopicPropertyComponent } from './device/topic-property/topic-property.component';
 import { DeviceListComponent } from './device/device-list/device-list.component';
+import { DeviceEnipmoduleComponent } from './device/device-enipmodule/device-enipmodule.component';
+import { DeviceEnipselectdeviceComponent } from './device/device-enipselectdevice/device-enipselectdevice.component';
 import { DeviceMapComponent } from './device/device-map/device-map.component';
 import { FuxaViewComponent } from './fuxa-view/fuxa-view.component';
 import { CardsViewComponent } from './cards-view/cards-view.component';
@@ -222,6 +225,8 @@ import { LanguageTextPropertyComponent } from './language/language-text-property
 import { LanguageService } from './_services/language.service';
 import { KioskWidgetsComponent } from './resources/kiosk-widgets/kiosk-widgets.component';
 import { ClientScriptAccessComponent } from './editor/client-script-access/client-script-access.component';
+import { TagPropertyEditEnipComponent } from './device/tag-property/tag-property-edit-enip/tag-property-edit-enip.component';
+import { EnumKeyValuePipe } from './gui-helpers/enumKeyPipe/enum-key-value.pipe';
 import { TagPropertyEditWebcamComponent } from './device/tag-property/tag-property-edit-webcam/tag-property-edit-webcam.component';
 import { EditPlaceholderComponent } from './gui-helpers/edit-placeholder/edit-placeholder.component';
 import { DeviceAdapterService } from './device-adapter/device-adapter.service';
@@ -267,11 +272,14 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
         TagPropertyEditEthernetipComponent,
         TagPropertyEditADSclientComponent,
         TagPropertyEditGpioComponent,
+        TagPropertyEditEnipComponent,
         TagPropertyEditMelsecComponent,
         TagOptionsComponent,
         TopicPropertyComponent,
         DevicePropertyComponent,
         DeviceWebapiPropertyDialogComponent,
+        DeviceEnipmoduleComponent,
+        DeviceEnipselectdeviceComponent,
         LayoutPropertyComponent,
         TagsIdsConfigComponent,
         PluginsComponent,
@@ -409,6 +417,7 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
         LanguageTextPropertyComponent,
         LanguageTextListComponent,
         ClientScriptAccessComponent,
+        EnumKeyValuePipe,
         TagPropertyEditWebcamComponent,
         VideoPropertyComponent,
         HtmlSchedulerComponent,
@@ -427,6 +436,7 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
         ReactiveFormsModule,
         routing,
         MaterialModule,
+        MatTreeModule,
         BrowserAnimationsModule,
         ColorPickerModule,
         AngularDraggableModule,

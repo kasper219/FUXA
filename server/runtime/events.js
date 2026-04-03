@@ -22,6 +22,7 @@ const IoEventTypes = {
     HOST_INTERFACES: 'host-interfaces',
     SCRIPT_CONSOLE: 'script-console',
     ALIVE: 'heartbeat',
+    DEVICE_BROWSE_FOR_DEVICES: 'device-find-devices',
     SCHEDULER_UPDATED: 'scheduler:updated',
     SCHEDULER_ACTIVE: 'scheduler:event-active',
     SCHEDULER_REMAINING: 'scheduler:remaining-time'
