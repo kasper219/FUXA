@@ -333,6 +333,62 @@ export class TagPropertyService {
         );
     }
 
+    public editTagPropertyEnIP(device: Device, tag: Tag, checkToAdd: boolean): Observable<any> {
+        let oldTagId = tag.id;
+        let tagToEdit: Tag = Utils.clone(tag);
+        let dialogRef = this.dialog.open(TagPropertyEditEnipComponent, {
+            disableClose: true,
+            data: {
+                device: device,
+                tag: tagToEdit
+            },
+            position: { top: '60px' }
+        });
+
+        return dialogRef.componentInstance.result.pipe(
+            map(result => {
+                if (result) {
+                    tag.name = result.tagName;
+                    //tag.type = result.type;
+                    tag.address = result.Symbolic.tagSymAddress;
+                    const enipOpt: EnipTagOptions = {
+                        tagType: result.tagType,
+                        explicitOpt: {
+                            class: result.Explicit.tagExpClass,
+                            instance: result.Explicit.tagExpInstance,
+                            attribute: result.Explicit.tagExpAttribute,
+                            getOrSend: result.Explicit.tagExpGetAttribute,
+                            sendBuffer: result.Explicit.tagExpSendBuffer
+                        },
+                        symbolicOpt: {
+                            program: result.Symbolic.tagSymProgram,
+                            dataType: result.Symbolic.tagSymDataType
+                         },
+                         ioOpt: {
+                            ioModuleId: result.IO.tagIOModule,
+                            ioType: result.IO.tagIOType,
+                            ioByteOffset: result.IO.tagIOByteOffset,
+                            ioBitOffset: result.IO.tagIOBitOffset,
+                            ioOutput: result.IO.tagIOOutput
+                         }
+                    };
+                    tag.enipOptions = enipOpt;
+                    tag.description = result.tagDescription;
+                    if (checkToAdd) {
+                        this.checkToAdd(tag, device);
+                    } else if (tag.id !== oldTagId) {
+                        //remove old tag device reference
+                        delete device.tags[oldTagId];
+                        this.checkToAdd(tag, device);
+                    }
+                    this.projectService.setDeviceTags(device);
+                }
+                dialogRef.close();
+                return result;
+            })
+        );
+    }
+
     editTagPropertyMqtt(device: Device, topic: Tag, tagsMap: {}, callbackModify: () => void) {
         let dialogRef = this.dialog.open(TopicPropertyComponent, {
             disableClose: true,
